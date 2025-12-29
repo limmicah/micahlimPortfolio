@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micah Lim</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="grainy-background"></div>
+
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Micah Lim</h1>
+            <p>Composer and producer</p>
+            <div class="buttons">
+                <a class="button primary" href="#portfolio">View Portfolio</a>
+                <a class="button secondary" href="#contact">Contact Me</a>
+            </div>
+        </div>
+        <div class="blob-cont">
+            <div class="yellow blob"></div>
+            <div class="red blob"></div>
+            <div class="green blob"></div>
+        </div>
+    </div>
+
+    <section id="portfolio">
+        <h1>My Work</h1>
+        <hr>
+        <article>
+            <h3>Wind from Heaven (for orchestra)</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/WqmjAOJDfVo" title="Wind from Heaven (for orchestra)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </article>
+        <article>
+            <h3>Battle of Okinawa: Hacksaw Ridge (film score)</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/JX311vK0i-Q" title="Battle of Okinawa: Hacksaw Ridge (film score)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </article>
+        <article>
+            <h3>World War II: Garrison (film score)</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/hI55DL4n4TI" title="World War II: Garrison (film score)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </article>
+        <article>
+            <h3>Siege of Woippy Castle (film score)</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/kF5960TrZUI" title="Siege of Woippy Castle (film score)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </article>
+    </section>
+
+    <svg>
+        <filter id='noiseFilter'>
+            <feTurbulence 
+                type='fractalNoise' 
+                baseFrequency='0.6' 
+                stitchTiles='stitch'/>
+            <feColorMatrix in="colorNoise" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
+            <feComposite operator="in" in2="SourceGraphic" result="monoNoise"/>
+            <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
+        </filter>
+    </svg>
+
+    <!-- Not required
+    <a href="https://www.youtube.com/watch?v=_ZFghigBmqo" target="_blank" class="youtube">Watch on YouTube</a>
+ -->
+</body>
+</html>
