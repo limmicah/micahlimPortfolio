@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Micah Lim</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicons/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="favicons/favicon-128.png" sizes="128x128" />
+
 </head>
-<body>
+<body class="geist">
     <div class="grainy-background"></div>
 
     <div class="hero">
+        <p class="numbers">[1]</p>
         <div class="hero-text">
-            <h1>Micah Lim</h1>
-            <p>Composer and producer</p>
-            <div class="buttons">
-                <a class="button primary" href="#portfolio">View Portfolio</a>
-                <a class="button secondary" href="#contact">Contact Me</a>
-            </div>
+            <h1 class="playfair-display">Micah Lim</h1>
+            <p>Composer and producer.</p>
         </div>
         <div class="blob-cont">
             <div class="yellow blob"></div>
@@ -24,42 +27,64 @@
             <div class="green blob"></div>
         </div>
     </div>
-
-    <section id="portfolio">
-        <h1>My Work</h1>
-        <hr>
+    <hr>
+    <div class="info">
+        <p class="numbers">[2]</p>
+        <h2>Contact</h2>
+        <ul>
+            <li><a href="mailto:micahblim@gmail.com" target="_blank" rel="noopener noreferrer">Mail</a></li>
+            <li><a href="https://www.youtube.com/@prod_by_mm" target="_blank" rel="noopener noreferrer">Youtube</a></li>
+            <li><a href="https://github.com/limmicah" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+    </div>
+    <hr>
+    <section class="portfolio">
+        <h2>My Work</h2>
         <article>
-            <h3>Wind from Heaven (for orchestra)</h3>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/WqmjAOJDfVo" title="Wind from Heaven (for orchestra)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="article-header">
+                <span class="dot" style="background-color: var(--yellow)"></span>
+                <p>Fantasy in C Major</p>
+                <span class="date">[2026]</span>
+            </div>
+            <p class="article-desc">Written for full orchestra, <i>Wind from Heaven</i> is a joyous fanfare which follows a single harmonic motif through a series of meters and colors.</p>
+            <iframe src="https://www.youtube.com/embed/mGRgCqerlyM?si=OIoZGu5ZNzJJ9rlr" title="Wind from Heaven (for orchestra)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </article>
         <article>
-            <h3>Battle of Okinawa: Hacksaw Ridge (film score)</h3>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/JX311vK0i-Q" title="Battle of Okinawa: Hacksaw Ridge (film score)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="article-header">
+                <span class="dot" style="background-color: var(--red)"></span>
+                <p>Siege of Woippy Castle</p>
+                <span class="date">[2025]</span>
+            </div>
+            <p class="article-desc">Film score commissioned by <i>The Brick Brain</i> animation studio.</p>
+            <iframe src="https://www.youtube.com/embed/kF5960TrZUI" title="Siege of Woippy Castle (film score)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </article>
         <article>
-            <h3>World War II: Garrison (film score)</h3>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/hI55DL4n4TI" title="World War II: Garrison (film score)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="article-header">
+                <span class="dot" style="background-color: var(--green)"></span>
+                <p>World War II: Garrison</p>
+                <span class="date">[2024]</span>
+            </div>
+            <p class="article-desc">Film score commissioned by <i>Twin Bricks</i> animation studio. <i>Garrison</i> follows the journey of a squad of American soldiers during WWII who must survive deep in enemy territory.</p>
+            <iframe src="https://www.youtube.com/embed/hI55DL4n4TI" title="World War II: Garrison (film score)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </article>
         <article>
-            <h3>Siege of Woippy Castle (film score)</h3>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/kF5960TrZUI" title="Siege of Woippy Castle (film score)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="article-header">
+                <span class="dot" style="background-color: var(--red)"></span>
+                <p>Wind from Heaven</p>
+                <span class="date">[2023]</span>
+            </div>
+            <p class="article-desc">Written for full orchestra, <i>Wind from Heaven</i> is a joyous fanfare which follows a single harmonic motif through a series of meters and colors.</p>
+            <iframe src="https://www.youtube.com/embed/WqmjAOJDfVo" title="Wind from Heaven (for orchestra)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </article>
+        <article>
+            <div class="article-header">
+                <span class="dot" style="background-color: var(--yellow)"></span>
+                <p>Battle of Okinawa: Hacksaw Ridge</p>
+                <span class="date">[2022]</span>
+            </div>
+            <p class="article-desc">Film score commissioned by <i>Twin Bricks</i> animation studio.</p>
+            <iframe src="https://www.youtube.com/embed/JX311vK0i-Q" title="Battle of Okinawa: Hacksaw Ridge (film score)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </article>
     </section>
-
-    <svg>
-        <filter id='noiseFilter'>
-            <feTurbulence 
-                type='fractalNoise' 
-                baseFrequency='0.6' 
-                stitchTiles='stitch'/>
-            <feColorMatrix in="colorNoise" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
-            <feComposite operator="in" in2="SourceGraphic" result="monoNoise"/>
-            <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
-        </filter>
-    </svg>
-
-    <!-- Not required
-    <a href="https://www.youtube.com/watch?v=_ZFghigBmqo" target="_blank" class="youtube">Watch on YouTube</a>
- -->
 </body>
 </html>

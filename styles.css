@@ -1,3 +1,20 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.geist {
+  font-family: "Geist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.playfair-display {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
+
 /* General Styles */
 :root {
   --bg: #E5E4E2;
@@ -6,54 +23,109 @@
   --red: #EB6666;
   --green: #6FB18A;
 }
-
+hr {
+  border: none;
+  border-top: 1px solid black;
+  opacity: 0.6;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+}
 body {
   height: auto;
   margin: 0;
-  
+  padding: clamp(20px, 4vw, 50px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 3em;
   
   background-color: var(--bg);
-  font-family: "Georgia", sans-serif;
   
   margin: 0 10em;
 }
-
-.grainy-background {
+.numbers {
+  font-size: 15px;
+  color: var(--text);
+  opacity: 0.6;
   position: absolute;
-  width: 100%;
-  height: 600px; /* Fixed height for the grainy background */
-  background: #8C8C8C; /* Same color as body::before */
-  filter: url(#noiseFilter); /* Same overlay effect */
-  opacity: 0.4; /* Match the original opacity */
-  z-index: -1;
+  top: 0;
+  right: 0;
+  margin: 0;
 }
-
-header, .hero {
-  position: relative;
-  z-index: 1;
-}
-
 .hero {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 600px; /* Set a fixed height for the hero section */
   gap: 3em;
+  position: relative;
+  max-width: 800px;
 }
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  text-decoration: none;
+  max-width: 800px;
+}
+.info h2 {
+  margin: 0;
+}
+.info ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  width: 100%;
+  counter-reset: link-counter;
+}
+.info ul li {
+  list-style: none;
+  width: 100%;
+  counter-increment: link-counter;
+}
+.info ul li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text);
+  width: 100%;
+  padding: 0.6em 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 16px;
+}
+.info ul li a::before {
+  content: counter(link-counter);
+  font-size: 11px;
+  vertical-align: super;
+  margin-right: 0.4em;
+  opacity: 0.5;
+}
+.info ul li a::after {
+  content: '↗';
+  font-size: 18px;
+  opacity: 0.5;
+  margin-left: auto;
+}
+.info ul li a:hover {
+  opacity: 0.6;
+}
+.info ul li:last-child a {
+  border-bottom: none;
+}
+
 .hero-text h1 {
-  font-size: 64px;
+  font-size: 55px;
   margin: 0;
   padding: 0;
 }
 .hero-text p {
-  font-size: 20px;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 .buttons {
@@ -71,133 +143,54 @@ header, .hero {
   text-align: center;
   cursor: pointer;
   text-decoration: none;
+  border-radius: 5px;
 }
 
-.primary {
-  background-color: var(--text);
-  color: #DED3B6;
-}
-
-.secondary {
-  background-color: transparent;
-  color: var(--text);
-}
-
-/* Blobs */
-.blob-cont {
+.portfolio {
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: -2;
-  height: 600px;
-  width: 500px;
-  position: relative;
-  right: 5em;
+  gap: 2em;
 }
-
-.blob {
-  border-radius: 100px;
-  filter: blur(60px);
+.portfolio h2 {
+  margin: 0;
 }
-
-.yellow {
-  background-color: var(--yellow);
-  position: absolute;
-  top: 200px;
-  left: 100px;
-  height: 200px;
-  width: 200px;
-  
-  animation: yellow 8s infinite ease;
-}
-
-.green {
-  background-color: var(--green);
-  position: absolute;
-  top: 80px;
-  right: -20px;
-  height: 200px;
-  width: 250px;
-  
-  animation: green 8s infinite ease;
-}
-
-.red {
-  background-color: var(--red);
-  position: absolute;
-  right: 0;
-  top: 300px;
-  height: 250px;
-  width: 200px;
-  
-  animation: red 8s infinite linear;
-}
-
-@keyframes yellow {
-  0% {top: 200px; left: 100px; transform: scale(1);}
-  30% {top: 300px; left: 150px; transform: scale(1.2);}
-  60% {top: 100px; left: 200px; transform: scale(1.3);}
-  100% {top: 200px; left: 100px; transform: scale(1);}
-}
-
-@keyframes green {
-  0% {top: 80px; right: -20px; transform: scale(1.2);}
-  30% {top: 300px; right: -20px;transform: scale(1);}
-  60% {top: 200px; right: 100px;transform: scale(1);}
-  100% {top: 80px; right: -20px; transform: scale(1.2);}
-}
-
-@keyframes red {
-  0% {top: 250px; right: 0px; transform: scale(1);}
-  30% {top: 150px; right: 150px;transform: scale(1.4);}
-  60% {top: 250px; right: 100px;transform: scale(1);}
-  100% {top: 250px; right: 0px; transform: scale(1);}
-}
-
-/* the rest of the page */
-.nav {
+.article-header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  gap: 0.5em;
 }
-
-.menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 3em;
+.article-header .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
 }
-
-#portfolio {
-  margin-top: 2rem; /* Add spacing between hero and portfolio sections */
+.article-header p {
+  margin: 0;
+  font-size: 16px;
+}
+.article-header .date {
+  margin-left: auto;
+  font-size: 15px;
+  opacity: 0.6;
+}
+.article-desc {
+  margin: 0.3em 0 0.5em 0;
+  font-size: 14px;
+  opacity: 0.6;
+}
+.portfolio iframe {
   width: 100%;
-  max-width: 1200px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: none;
+  border-radius: 5px;
 }
 
 @media only screen and (max-width: 1000px) {
   body {
     margin: 1em;
   }
-}
-
-/* Not required */
-.youtube {
-  text-decoration: none;
-  position: absolute;
-  padding: 1em 2em;
-  bottom: 1em;
-  right: 1em;
-  z-index: 9999;
-  font-family: 'Roboto';
-  color: #1c1c1c;
-  border: 1px solid #1c1c1c;
-  border-radius: 5px;
-}
-
-youtube:hover {
-  background-color: rgb(28,28,28,0.14);
 }
