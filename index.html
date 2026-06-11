@@ -11,6 +11,16 @@
     <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="favicons/favicon-128x128.png" sizes="128x128" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#E5E4E2">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#151515">
+    <script>
+        // Set the theme before first paint to avoid a flash of the wrong mode.
+        (function () {
+            var saved = localStorage.getItem('theme');
+            var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.dataset.theme = saved || system;
+        })();
+    </script>
 </head>
 <body>
     <div class="grain" aria-hidden="true"></div>
@@ -20,17 +30,13 @@
         <nav>
             <a href="#contact">Contact</a>
             <a href="#music">Music</a>
+            <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span aria-hidden="true"></span></button>
         </nav>
     </header>
 
     <main id="top">
         <!-- ============ HERO ============ -->
         <section class="hero">
-            <div class="orbs" aria-hidden="true">
-                <div class="orb orb-yellow"></div>
-                <div class="orb orb-red"></div>
-                <div class="orb orb-green"></div>
-            </div>
             <p class="section-label reveal">[1] — Portfolio</p>
             <h1 class="hero-title">
                 <span class="line reveal"><span class="serif-italic">Micah</span></span>
@@ -42,13 +48,6 @@
                 <a class="scroll-cue" href="#music" aria-label="Scroll to music">↓</a>
             </div>
         </section>
-
-        <!-- ============ MARQUEE ============ -->
-        <div class="marquee" aria-hidden="true">
-            <div class="marquee-track">
-                <span>Film Scores <i>✺</i> Orchestral Works <i>✺</i> Jazz &amp; Worship <i>✺</i> Original Compositions <i>✺</i> </span><span>Film Scores <i>✺</i> Orchestral Works <i>✺</i> Jazz &amp; Worship <i>✺</i> Original Compositions <i>✺</i> </span>
-            </div>
-        </div>
 
         <!-- ============ CONTACT ============ -->
         <section class="contact" id="contact">
@@ -182,6 +181,29 @@
         } else {
             reveals.forEach((el) => el.classList.add('visible'));
         }
+
+        // Pause decorative animations while they are off-screen so they
+        // never compete with scrolling.
+        if ('IntersectionObserver' in window) {
+            const pauser = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    entry.target.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+                });
+            });
+            document.querySelectorAll('.scroll-cue').forEach((el) => pauser.observe(el));
+        }
+
+        // Theme toggle: manual choice is saved; otherwise follow the system.
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.dataset.theme = next;
+            localStorage.setItem('theme', next);
+        });
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                document.documentElement.dataset.theme = e.matches ? 'dark' : 'light';
+            }
+        });
     </script>
 </body>
 </html>

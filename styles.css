@@ -3,6 +3,7 @@
 
 /* ============ Tokens ============ */
 :root {
+  color-scheme: light;
   --bg: #E5E4E2;
   --text: #151515;
   --yellow: #EDB74D;
@@ -14,17 +15,27 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #151515;
+  --text: #E5E4E2;
+  --hairline: rgba(229, 228, 226, 0.2);
+}
+
 /* ============ Base ============ */
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
+  position: relative;
   background-color: var(--bg);
   color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-family: "Geist", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -39,7 +50,7 @@ body {
   font-weight: 500;
 }
 
-::selection { background: var(--yellow); color: var(--text); }
+::selection { background: var(--yellow); color: #151515; }
 
 a { color: inherit; }
 
@@ -60,7 +71,7 @@ a:focus-visible {
 
 /* ============ Grain ============ */
 .grain {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 50;
   pointer-events: none;
@@ -79,9 +90,7 @@ a:focus-visible {
   justify-content: space-between;
   align-items: center;
   padding: 1rem var(--gutter);
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -133,6 +142,35 @@ a:focus-visible {
   transform-origin: left;
 }
 
+.theme-toggle {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme-toggle span {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid var(--text);
+  background: linear-gradient(90deg, var(--text) 50%, transparent 50%);
+  transition: transform 0.45s var(--ease);
+}
+
+.theme-toggle:hover span {
+  transform: rotate(180deg);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+}
+
 /* ============ Layout ============ */
 main {
   width: 100%;
@@ -157,50 +195,6 @@ main {
   flex-direction: column;
   justify-content: center;
   padding-top: 4rem;
-}
-
-.orbs {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  filter: blur(70px);
-  opacity: 0.55;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.orb-yellow {
-  width: 38vmax; height: 38vmax;
-  background: var(--yellow);
-  top: 8%; right: -8%;
-  animation: drift-a 18s ease-in-out infinite alternate;
-}
-
-.orb-red {
-  width: 26vmax; height: 26vmax;
-  background: var(--red);
-  bottom: 4%; left: -6%;
-  animation: drift-b 22s ease-in-out infinite alternate;
-}
-
-.orb-green {
-  width: 20vmax; height: 20vmax;
-  background: var(--green);
-  top: 42%; left: 34%;
-  animation: drift-c 26s ease-in-out infinite alternate;
-}
-
-@keyframes drift-a {
-  to { transform: translate(-8vmax, 6vmax) scale(1.12); }
-}
-@keyframes drift-b {
-  to { transform: translate(6vmax, -7vmax) scale(0.92); }
-}
-@keyframes drift-c {
-  to { transform: translate(-5vmax, -5vmax) scale(1.18); }
 }
 
 .hero-title {
@@ -254,41 +248,6 @@ main {
   50% { transform: translateY(6px); }
 }
 
-/* ============ Marquee ============ */
-.marquee {
-  overflow: hidden;
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-  margin: 0 calc(-1 * var(--gutter));
-  padding: 0.9rem 0;
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  white-space: nowrap;
-  animation: marquee 28s linear infinite;
-}
-
-.marquee-track span {
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
-  padding-right: 0.4em;
-}
-
-.marquee-track i {
-  font-style: normal;
-  font-size: 0.7em;
-  vertical-align: 0.15em;
-  padding: 0 0.5em;
-  opacity: 0.5;
-}
-
-@keyframes marquee {
-  to { transform: translateX(-50%); }
-}
-
 /* ============ Contact ============ */
 .contact {
   padding: clamp(5rem, 12vh, 9rem) 0;
@@ -312,7 +271,7 @@ main {
   display: flex;
   align-items: center;
   gap: clamp(1rem, 3vw, 2.5rem);
-  padding: clamp(1.1rem, 3vh, 1.8rem) 0.5rem;
+  padding: clamp(1.1rem, 3vh, 1.8rem) clamp(0.75rem, 2vw, 1.5rem);
   text-decoration: none;
   position: relative;
   isolation: isolate;
@@ -444,7 +403,7 @@ figure {
   height: auto;
   border: none;
   border-radius: 10px;
-  background: rgba(21, 21, 21, 0.06);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
 }
 
 figcaption {
@@ -533,8 +492,12 @@ figcaption {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  .orb, .scroll-cue, .marquee-track {
+  .scroll-cue {
     animation: none;
+  }
+
+  body {
+    transition: none;
   }
 
   .reveal {
