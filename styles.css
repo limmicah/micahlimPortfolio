@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+/* Fonts are loaded via <link> in index.html for faster, non-blocking delivery. */
 
 /* ============ Tokens ============ */
 :root {
@@ -41,7 +40,6 @@ body {
   font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 .serif-italic {
@@ -402,7 +400,7 @@ figure {
   aspect-ratio: 16 / 9;
   height: auto;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   background: color-mix(in srgb, var(--text) 6%, transparent);
 }
 

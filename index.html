@@ -5,20 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Micah Lim</title>
     <meta name="description" content="Micah Lim — composer & saxophonist. Film scores, orchestral works, jazz & worship music.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,400;1,500&display=swap">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="favicons/favicon-196x196.png" sizes="196x196" />
     <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="favicons/favicon-128x128.png" sizes="128x128" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#E5E4E2">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#151515">
+    <meta name="theme-color" content="#E5E4E2">
     <script>
-        // Set the theme before first paint to avoid a flash of the wrong mode.
+        // Apply the theme before first paint to avoid a flash of the wrong mode,
+        // and keep the browser-UI theme-color in sync with the actual theme.
+        window.applyTheme = function (theme) {
+            document.documentElement.dataset.theme = theme;
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.content = theme === 'dark' ? '#151515' : '#E5E4E2';
+        };
         (function () {
-            var saved = localStorage.getItem('theme');
             var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            document.documentElement.dataset.theme = saved || system;
+            var theme = system;
+            try { theme = localStorage.getItem('theme') || system; } catch (e) {}
+            window.applyTheme(theme);
         })();
     </script>
 </head>
@@ -196,13 +205,13 @@
         // Theme toggle: manual choice is saved; otherwise follow the system.
         document.querySelector('.theme-toggle').addEventListener('click', () => {
             const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-            document.documentElement.dataset.theme = next;
-            localStorage.setItem('theme', next);
+            applyTheme(next);
+            try { localStorage.setItem('theme', next); } catch (e) {}
         });
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem('theme')) {
-                document.documentElement.dataset.theme = e.matches ? 'dark' : 'light';
-            }
+            let saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (_) {}
+            if (!saved) applyTheme(e.matches ? 'dark' : 'light');
         });
     </script>
 </body>
