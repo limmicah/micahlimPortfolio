@@ -30,31 +30,44 @@
             window.applyTheme(theme);
         })();
     </script>
+    <script src="main.js" defer></script>
 </head>
 <body>
     <div class="grain" aria-hidden="true"></div>
 
     <header class="site-nav">
-        <a class="wordmark" href="#top">Micah Lim<span class="wordmark-dot"></span></a>
-        <nav>
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true"></span></button>
+        <nav id="site-menu">
             <a href="#contact">Contact</a>
-            <a href="#music">Music</a>
-            <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span aria-hidden="true"></span></button>
+            <a href="music.html">Music</a>
+            <a href="projects.html">Projects</a>
         </nav>
+        <a class="wordmark" href="#top" aria-label="Micah Lim — home">ml</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span aria-hidden="true"></span></button>
     </header>
 
     <main id="top">
         <!-- ============ HERO ============ -->
         <section class="hero">
             <p class="section-label reveal">[1] — Portfolio</p>
-            <h1 class="hero-title">
-                <span class="line reveal"><span class="serif-italic">Micah</span></span>
-                <span class="line reveal d1"><span class="outline">Lim</span></span>
-            </h1>
+            <div class="hero-main">
+                <h1 class="hero-title">
+                    <span class="line reveal"><span class="serif-italic">Micah</span></span>
+                    <span class="line reveal d1"><span class="outline">Lim</span></span>
+                </h1>
+                <!-- Headshot, disabled for now. Uncomment to bring it back; swap the
+                     .frame-label span for <img src="images/headshot.jpg" alt="Micah Lim">
+                     to use a real photo — the frame chrome steps aside on its own.
+                <figure class="hero-portrait reveal d2">
+                    <div class="frame">
+                        <span class="frame-label">Headshot</span>
+                    </div>
+                </figure>
+                -->
+            </div>
             <div class="hero-meta reveal d2">
-                <p>Composer&nbsp;&amp;&nbsp;Saxophonist</p>
                 <p class="muted">Selected works, 2022—2026</p>
-                <a class="scroll-cue" href="#music" aria-label="Scroll to music">↓</a>
+                <a class="scroll-cue" href="#contact" aria-label="Scroll to contact">↓</a>
             </div>
         </section>
 
@@ -68,106 +81,6 @@
                 <li class="reveal d2"><a href="https://github.com/limmicah" target="_blank" rel="noopener noreferrer"><span class="idx">03</span><span class="contact-name">GitHub</span><span class="arrow">↗</span></a></li>
             </ul>
         </section>
-
-        <!-- ============ MUSIC ============ -->
-        <section class="works" id="music">
-            <p class="section-label reveal">[3] — Music</p>
-            <h2 class="works-title reveal"><span class="serif-italic">Selected</span> Works</h2>
-
-            <article class="work reveal">
-                <div class="work-header">
-                    <span class="work-idx">01</span>
-                    <h3 class="work-name">Micah &amp; friends</h3>
-                    <span class="dot" style="background-color: var(--yellow)"></span>
-                    <span class="work-year">[2026]</span>
-                </div>
-                <p class="work-desc">I brought together a group of friends to create a unique fusion of jazz and christian worship music!</p>
-                <p class="credits">Alto sax: Micah Lim. Tenor sax: Dontae James. Keys: Linus Tsang. Drums: Ben Sachar. Bass: Claudia Persinger. Flute: Teddy Morris. Clarinet: Karolina Yoo. Cello: Vera Lim. Viola: Olivia Koumpouras. Violins: Dylan Lai, Ashley Peng. Vocals: Kellen Rinehart</p>
-                <div class="media-grid">
-                    <figure>
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/wMVojd-jDEw?si=nC_J4x2vy4wBtcS5" title="Connection" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                        <figcaption><i>Connection</i> is about faith as a deliberate choice. It reflects the desire to see and understand the goodness of God, yet it also acknowledges that faith does not depend on perfect clarity. Even when God feels distant or unseen, the piece points to the decision to continue praising and trusting Him. Faith is not a passive state of mind, but an active pursuit—one that trusts and perseveres.</figcaption>
-                    </figure>
-                    <figure>
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/2WBDBqLbex4?si=NOxUXqZgPrQIOzX9" title="Faith" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                        <figcaption><i>Faith</i> is inspired by the experience of faith itself. While faith is not merely an emotion, this piece attempts to capture the beauty of those moments when God's goodness becomes deeply tangible. Such moments can bring peace and assurance, especially in seasons of darkness. It is a reflection on the comfort and hope found in knowing that God is good.</figcaption>
-                    </figure>
-                </div>
-            </article>
-
-            <article class="work reveal">
-                <div class="work-header">
-                    <span class="work-idx">02</span>
-                    <h3 class="work-name">Siege of Woippy Castle</h3>
-                    <span class="dot" style="background-color: var(--red)"></span>
-                    <span class="work-year">[2025]</span>
-                </div>
-                <p class="work-desc">Film score commissioned by <i>The Brick Brain</i> animation studio.</p>
-                <figure>
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/kF5960TrZUI" title="Siege of Woippy Castle (film score)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                </figure>
-            </article>
-
-            <article class="work reveal">
-                <div class="work-header">
-                    <span class="work-idx">03</span>
-                    <h3 class="work-name">World War II: Garrison</h3>
-                    <span class="dot" style="background-color: var(--green)"></span>
-                    <span class="work-year">[2024]</span>
-                </div>
-                <p class="work-desc">Film score commissioned by <i>Twin Bricks</i> animation studio. <i>Garrison</i> follows the journey of a squad of American soldiers during WWII who must survive deep in enemy territory.</p>
-                <figure>
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/hI55DL4n4TI" title="World War II: Garrison (film score)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                    <figcaption>Full film</figcaption>
-                </figure>
-            </article>
-
-            <article class="work reveal">
-                <div class="work-header">
-                    <span class="work-idx">04</span>
-                    <h3 class="work-name">Wind from Heaven</h3>
-                    <span class="dot" style="background-color: var(--red)"></span>
-                    <span class="work-year">[2023]</span>
-                </div>
-                <p class="work-desc">Written for full orchestra, <i>Wind from Heaven</i> is a joyous fanfare which follows a single harmonic motif through a series of meters and colors.</p>
-                <figure>
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/WqmjAOJDfVo" title="Wind from Heaven (for orchestra)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                </figure>
-            </article>
-
-            <article class="work reveal">
-                <div class="work-header">
-                    <span class="work-idx">05</span>
-                    <h3 class="work-name">Fantasy in C.</h3>
-                    <span class="dot" style="background-color: var(--yellow)"></span>
-                    <span class="work-year">[2023]</span>
-                </div>
-                <p class="work-desc">A fantasia (or fantasy) is a free-form musical composition that does not adhere to strict structural conventions. Reflecting this idea, <i>Fantasy in C.</i> unfolds as a musical train of thought. It begins with a bright fanfare and gradually moves through shifting colors and territories, at times moving jaggedly and at others flowing smoothly. The music frequently changes direction, altering its perspective throughout the piece, and is filled with both unexpected turns and subtle, reflective moments.</p>
-                <div class="media-grid">
-                    <figure>
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/mGRgCqerlyM?si=OIoZGu5ZNzJJ9rlr" title="Fantasy in C. (digital performance)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                        <figcaption>Digital performance</figcaption>
-                    </figure>
-                    <figure>
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/s1naUp2KbDc?si=3_nvJCd3NkwAGPQD" title="Fantasy in C. (live performance)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                        <figcaption>Performed by the Guilford High School Symphony Orchestra (2026)</figcaption>
-                    </figure>
-                </div>
-            </article>
-
-            <article class="work reveal">
-                <div class="work-header">
-                    <span class="work-idx">06</span>
-                    <h3 class="work-name">Battle of Okinawa: Hacksaw Ridge</h3>
-                    <span class="dot" style="background-color: var(--yellow)"></span>
-                    <span class="work-year">[2022]</span>
-                </div>
-                <p class="work-desc">Film score commissioned by <i>Twin Bricks</i> animation studio.</p>
-                <figure>
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/JX311vK0i-Q" title="Battle of Okinawa: Hacksaw Ridge (film score)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                </figure>
-            </article>
-        </section>
     </main>
 
     <footer class="site-footer">
@@ -175,44 +88,5 @@
         <a href="#top">Back to top ↑</a>
     </footer>
 
-    <script>
-        const reveals = document.querySelectorAll('.reveal');
-        if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
-            reveals.forEach((el) => io.observe(el));
-        } else {
-            reveals.forEach((el) => el.classList.add('visible'));
-        }
-
-        // Pause decorative animations while they are off-screen so they
-        // never compete with scrolling.
-        if ('IntersectionObserver' in window) {
-            const pauser = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    entry.target.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
-                });
-            });
-            document.querySelectorAll('.scroll-cue').forEach((el) => pauser.observe(el));
-        }
-
-        // Theme toggle: manual choice is saved; otherwise follow the system.
-        document.querySelector('.theme-toggle').addEventListener('click', () => {
-            const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-            applyTheme(next);
-            try { localStorage.setItem('theme', next); } catch (e) {}
-        });
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            let saved = null;
-            try { saved = localStorage.getItem('theme'); } catch (_) {}
-            if (!saved) applyTheme(e.matches ? 'dark' : 'light');
-        });
-    </script>
 </body>
 </html>

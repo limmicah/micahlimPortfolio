@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — Micah Lim</title>
+    <meta name="description" content="Projects by Micah Lim — Bespoke Samples and NMFD research.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,400;1,500&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicons/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="favicons/favicon-128x128.png" sizes="128x128" />
+    <meta name="theme-color" content="#E5E4E2">
+    <script>
+        // Apply the theme before first paint to avoid a flash of the wrong mode,
+        // and keep the browser-UI theme-color in sync with the actual theme.
+        window.applyTheme = function (theme) {
+            document.documentElement.dataset.theme = theme;
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.content = theme === 'dark' ? '#151515' : '#E5E4E2';
+        };
+        (function () {
+            var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            var theme = system;
+            try { theme = localStorage.getItem('theme') || system; } catch (e) {}
+            window.applyTheme(theme);
+        })();
+    </script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-nav">
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true"></span></button>
+        <nav id="site-menu">
+            <a href="index.html#contact">Contact</a>
+            <a href="music.html">Music</a>
+            <a href="projects.html" aria-current="page">Projects</a>
+        </nav>
+        <a class="wordmark" href="index.html" aria-label="Micah Lim — home">ml</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span aria-hidden="true"></span></button>
+    </header>
+
+    <main class="page-main" id="top">
+        <!-- ============ PAGE HEAD ============ -->
+        <header class="page-head">
+            <p class="section-label reveal">[1] — Projects</p>
+            <h1 class="page-title reveal">Other <span class="outline">Work</span></h1>
+            <!-- TODO: one or two sentences framing what lives on this page. -->
+            <p class="page-intro reveal d1">Exploring innovative approaches to audio processing and creative tools, at the  <i>intersection of music and technology.</i></p>
+            <ul class="project-index reveal d2">
+                <li><a href="#bespoke-samples"><span class="idx">01</span> Bespoke Samples</a></li>
+                <li><a href="#nmfd"><span class="idx">02</span> NMFD Research</a></li>
+            </ul>
+        </header>
+
+        <!-- ============ 01 — BESPOKE SAMPLES ============ -->
+        <!-- TODO: replace every "Placeholder" string, point the link at the live site,
+             and drop photos into the .frame divs (see the note at the bottom of this file). -->
+        <article class="project" id="bespoke-samples">
+            <div class="project-head reveal">
+                <span class="project-num" aria-hidden="true">01</span>
+                <div>
+                    <h2 class="project-title">Bespoke Samples</h2>
+                    <p class="project-tagline">Creating plugins and sample packs for music producers</p>
+                </div>
+            </div>
+
+            <!-- Cover motion graphic. Self-hosted rather than a YouTube/Vimeo embed:
+                 no iframe, no third-party cookies, no player chrome, and the loop is
+                 seamless. To swap in a new render, overwrite the three files in media/
+                 (see the encode recipe at the bottom of this file) — no markup change. -->
+            <!-- <figure class="plate plate-bleed reveal">
+                <div class="frame ratio-21x9">
+                    <video class="plate-video"
+                           poster="media/bespoke-hero-poster.jpg"
+                           muted loop playsinline autoplay preload="metadata"
+                           aria-label="Bespoke Samples — title sequence, looping motion graphic">
+                        <source src="media/bespoke-hero.webm" type="video/webm">
+                        <source src="media/bespoke-hero.mp4" type="video/mp4">
+                    </video>
+                    <button class="motion-toggle" type="button" aria-pressed="false">Pause</button>
+                </div>
+                <figcaption>Product reel.</figcaption>
+            </figure>-->
+
+            <div class="project-body">
+                <aside class="project-meta reveal">
+                    <dl>
+                        <div><dt>Year</dt><dd>2023-2026</dd></div>
+                        <div><dt>Status</dt><dd>Active</dd></div>
+                        <div><dt>Tools</dt><dd>Figma, HISE, Max RNBO, Claude, Davinci Resolve</dd></div>
+                        <div><dt>Responsibilities</dt><dd>UX, UI, DSP, HISE Dev, Marketing</dd></div>
+                        <div><dt>Partnership</dt><dd>MuseHub</dd></div>
+                    </dl>
+                    <p class="work-links"><a href="https://bespokesamples.com/" target="_blank" rel="noopener noreferrer">Visit the site <span class="arrow">↗</span></a></p>
+                </aside>
+
+                <div class="project-content">
+                    <p class="project-lede reveal">I designed and developed a suite of plugins and sample packs for experimental electronic music producers.</p>
+
+                    <!-- Sourced from media/bespoke_4_3_one.png and _two.png (4800px wide).
+                         Those originals are far larger than these slots, which top out
+                         around 365px, so each is served as WebP at 800w and 1400w — the
+                         browser takes the smaller one unless the screen earns the bigger. -->
+                    <div class="plate-grid reveal">
+                        <figure class="plate">
+                            <div class="frame ratio-4x3">
+                                <img src="media/bespoke-plugins-800.webp"
+                                     srcset="media/bespoke-plugins-800.webp 800w,
+                                             media/bespoke-plugins-1400.webp 1400w"
+                                     sizes="(max-width: 760px) calc(100vw - 2.5rem), 365px"
+                                     width="800" height="600" loading="lazy" decoding="async"
+                                     alt="Three Bespoke Samples plugin interfaces — Granola, Swell, and Liquidize">
+                            </div>
+                            <figcaption>Swell, Granola, and Liquidize.</figcaption>
+                        </figure>
+                        <figure class="plate">
+                            <div class="frame ratio-4x3">
+                                <img src="media/bespoke-packs-800.webp"
+                                     srcset="media/bespoke-packs-800.webp 800w,
+                                             media/bespoke-packs-1400.webp 1400w"
+                                     sizes="(max-width: 760px) calc(100vw - 2.5rem), 365px"
+                                     width="800" height="600" loading="lazy" decoding="async"
+                                     alt="Six covers from the Floral sample pack series — Glitches, Melodies vols. 1 and 2, and Pads — each a tree canopy photograph under a different colour wash.">
+                            </div>
+                            <figcaption>Floral botanica sample pack series.</figcaption>
+                        </figure>
+                    </div>
+                    <p class="project-text reveal">VSTs are digital audio plugins, small pieces of software that add new sounds or effects to audio production within a digital audio workstation (DAW). My work spanned the entire VST development process from concept to implementation to marketing. User interfaces were designed in <a href="https://figma.com/" target="_blank">Figma</a>, digital signal processing implemented in C++ and <a href="https://rnbo.cycling74.com/" target="_blank">Max RNBO</a>, and final plugins developed in <a href="https://hise.dev/" target="_blank">HISE</a>.</p>
+                    <p class="project-text reveal"><a href="https://bespokesamples.gumroad.com/l/swell" target="_blank">Swell</a> is my flagship VST plugin, featuring over 1000 custom swell sound effects mapped into 3 sampler engines and controlled by a barycentric XY pad for unlimited mixing possibilities. Finally, Swell includes an FX rack complete with a spectral gating algorithm, a staple of the experimental sound design scene.</p>
+                    <p class="project-text reveal"><a href="https://bespokesamples.gumroad.com/l/liqui" target="_blank">Liquidize</a> is a unique self-modulating vocoder algorithm. <a href="https://bespokesamples.gumroad.com/l/grano" target="_blank">Granola</a> is a granular delay effect.</p>
+                    <p class="project-text reveal">The <a href="https://bespokesamples.gumroad.com/l/floral" target="_blank">Floral botanica sample pack series</a> are my five sample packs. Featuring a wide array of melodies, effects, drums, and pads, Floral contains over 1400 custom samples. Every sound was designed from real-world recordings and digital synthesizers, processed to create unique textures.</p>
+                    <!-- <blockquote class="pull reveal">"delicious sounds"</blockquote>-->
+                </div>
+            </div>
+        </article>
+
+        <!-- ============ 02 — NMFD RESEARCH ============ -->
+        <article class="project" id="nmfd">
+            <div class="project-head reveal">
+                <span class="project-num" aria-hidden="true">02</span>
+                <div>
+                    <h2 class="project-title">NMFD Research</h2>
+                    <p class="project-tagline">Optimal template length for NMFD drum stem separation.</p>
+                </div>
+            </div>
+
+            <div class="project-body">
+                <aside class="project-meta reveal">
+                    <dl>
+                        <div><dt>Year</dt><dd>2023-2026</dd></div>
+                        <div><dt>Mentorship</dt><dd>Claire Chang, Cornell University</dd></div>
+                    </dl>
+                    <p class="work-links"><a href="#" target="_blank" rel="noopener noreferrer">Read the paper (coming soon)<span class="arrow">↗</span></a></p>
+                    <p class="work-links"><a href="https://github.com/limmicah/NMFD_separation" target="_blank" rel="noopener noreferrer">View the code <span class="arrow">↗</span></a></p>
+                </aside>
+                
+                <div class="project-content">
+                    <p class="project-lede reveal">My paper attempts to improve Non-negative Matrix Factor Deconvolution (NMFD), an algorithm for musical stem separation which can take an musical audio mixture and separate it into constituent instrument tracks.</p>
+                    <!--
+                    <figure class="plate reveal">
+                        <div class="frame ratio-16x9"><span class="frame-label">Figure — spectrogram or plot, 16:9</span></div>
+                        <figcaption>Placeholder — figure caption.</figcaption>
+                    </figure>
+                    <p class="project-text reveal">Placeholder — method and findings. Two or three paragraphs is plenty; link out to the paper for the rest.</p>-->
+                    <!--
+                    <div class="plate-grid plate-grid-3 reveal">
+                        <figure class="plate">
+                            <div class="frame ratio-1x1"><span class="frame-label">Fig. 1</span></div>
+                            <figcaption>Placeholder.</figcaption>
+                        </figure>
+                        <figure class="plate">
+                            <div class="frame ratio-1x1"><span class="frame-label">Fig. 2</span></div>
+                            <figcaption>Placeholder.</figcaption>
+                        </figure>
+                        <figure class="plate">
+                            <div class="frame ratio-1x1"><span class="frame-label">Fig. 3</span></div>
+                            <figcaption>Placeholder.</figcaption>
+                        </figure>
+                    </div>-->
+                </div>
+            </div>
+        </article>
+
+        <!-- To use a real image anywhere on this page, replace the <span class="frame-label">
+             inside a .frame with <img src="images/your-file.jpg" alt="…">. The frame's border
+             and fill disappear on their own, and the photo is cropped to the frame's ratio. -->
+
+        <!-- ============ REPLACING THE COVER MOTION GRAPHIC ============
+             Export from After Effects as ProRes or PNG sequence (never straight to
+             H.264 — encode once, at the end). Aim for a 6–12s silent loop at 1920px
+             wide. Then, from the export:
+
+               # 1. Make the loop seamless by crossfading the last second over the
+               #    first, so the cut is invisible. Drops 1s from the total length.
+               ffmpeg -i export.mov -filter_complex \
+                 "[0:v]trim=0:1,setpts=PTS-STARTPTS[head]; \
+                  [0:v]trim=9:10,setpts=PTS-STARTPTS[tail]; \
+                  [tail][head]blend=all_expr='A*(1-(T/1))+B*(T/1)'[seam]; \
+                  [0:v]trim=1:9,setpts=PTS-STARTPTS[body]; \
+                  [seam][body]concat=n=2:v=1:a=0,format=yuv420p[out]" \
+                 -map "[out]" -c:v libx264 -crf 18 -preset slow loop.mp4
+
+               # 2. WebM/VP9 — smaller, and what Chrome and Firefox will pick.
+               ffmpeg -i loop.mp4 -an -c:v libvpx-vp9 -crf 34 -b:v 0 -row-mt 1 \
+                 media/bespoke-hero.webm
+
+               # 3. MP4/H.264 — the fallback Safari and everything else needs.
+               #    -movflags +faststart puts the index first so it starts on the
+               #    first chunk instead of waiting for the whole file.
+               ffmpeg -i loop.mp4 -an -c:v libx264 -profile:v high -crf 24 \
+                 -preset slow -pix_fmt yuv420p -movflags +faststart \
+                 media/bespoke-hero.mp4
+
+               # 4. Poster — frame one, so the first paint is never empty.
+               ffmpeg -i loop.mp4 -frames:v 1 -q:v 6 media/bespoke-hero-poster.jpg
+
+             -an strips audio: a silent track still costs bytes, and a muted
+             autoplaying video is the only kind browsers allow. Keep the pair under
+             about 2MB; raise -crf to trade detail for size. Flat gradients band
+             badly at low bitrates — a touch of grain in the comp hides it. -->
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Micah Lim</p>
+        <a href="#top">Back to top ↑</a>
+    </footer>
+</body>
+</html>

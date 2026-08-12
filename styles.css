@@ -78,14 +78,18 @@ a:focus-visible {
 }
 
 /* ============ Nav ============ */
+/* Links left, mark centered, theme toggle right. The outer 1fr columns are
+   equal, so the mark sits on the true center of the bar regardless of how
+   wide the links or the toggle are. */
 .site-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 40;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: "nav mark toggle";
   align-items: center;
   padding: 1rem var(--gutter);
   background: color-mix(in srgb, var(--bg) 88%, transparent);
@@ -93,26 +97,84 @@ a:focus-visible {
 }
 
 .wordmark {
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.01em;
+  grid-area: mark;
+  justify-self: center;
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.3em;
-}
-
-.wordmark-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--red);
-  align-self: center;
+  display: inline-block;
+  /* Optical centering: the italic's overhang makes it read left-of-center. */
+  padding-right: 0.08em;
 }
 
 .site-nav nav {
+  grid-area: nav;
+  justify-self: start;
   display: flex;
   gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+/* Hamburger. Shares the "nav" area with the links, but only one of the two is
+   ever shown — see the 760px breakpoint. */
+.nav-toggle {
+  grid-area: nav;
+  justify-self: start;
+  display: none;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 22px;
+  height: 15px;
+  position: relative;
+}
+
+/* Three 1px rules: the span is the middle one, its pseudos the outer two. */
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 1px;
+  background: var(--text);
+  transition: transform 0.4s var(--ease), opacity 0.2s linear;
+}
+
+.nav-toggle span {
+  top: 7px;
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after {
+  content: '';
+}
+
+.nav-toggle span::before { top: -7px; }
+.nav-toggle span::after  { top: 7px; }
+
+/* Middle rule fades, outer two collapse to the centre and cross. */
+.site-nav.menu-open .nav-toggle span {
+  background: transparent;
+  transition: background 0.2s linear;
+}
+
+.site-nav.menu-open .nav-toggle span::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-nav.menu-open .nav-toggle span::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 6px;
 }
 
 .site-nav nav a {
@@ -135,12 +197,15 @@ a:focus-visible {
   transition: transform 0.4s var(--ease);
 }
 
-.site-nav nav a:hover::after {
+.site-nav nav a:hover::after,
+.site-nav nav a[aria-current="page"]::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
 .theme-toggle {
+  grid-area: toggle;
+  justify-self: end;
   appearance: none;
   background: none;
   border: none;
@@ -177,6 +242,11 @@ main {
   padding: 0 var(--gutter);
 }
 
+/* Pages whose content starts right under the fixed nav, with no hero. */
+.page-main {
+  padding-top: clamp(6rem, 14vh, 9rem);
+}
+
 .section-label {
   font-size: 0.8rem;
   letter-spacing: 0.12em;
@@ -194,6 +264,108 @@ main {
   justify-content: center;
   padding-top: 4rem;
 }
+
+.hero-main {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+}
+
+.hero-main .hero-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.hero-portrait {
+  flex: 0 0 auto;
+  width: clamp(150px, 22vw, 260px);
+  margin: 0;
+}
+
+/* ============ Image frames ============
+   A .frame is an empty slot waiting for a photo. Drop an <img> inside it and
+   the placeholder chrome steps aside on its own — no CSS edit needed. */
+.frame {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  display: grid;
+  place-items: center;
+}
+
+.frame:has(img),
+.frame:has(video) {
+  border-color: transparent;
+  background: none;
+}
+
+.frame img,
+.frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* A frame holding video also holds the pause control. */
+.frame:has(video) {
+  position: relative;
+}
+
+/* WCAG 2.2.2: motion that plays for more than five seconds needs a way to
+   stop it. Quiet until hover or keyboard focus, then legible over any frame. */
+.motion-toggle {
+  position: absolute;
+  right: clamp(0.75rem, 2vw, 1.25rem);
+  bottom: clamp(0.75rem, 2vw, 1.25rem);
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: color-mix(in srgb, var(--text) 72%, transparent);
+  border: none;
+  border-radius: 2px;
+  padding: 0.45em 0.9em;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.frame:hover .motion-toggle,
+.motion-toggle:focus-visible {
+  opacity: 1;
+}
+
+.motion-toggle:focus-visible {
+  outline: 2px solid var(--bg);
+  outline-offset: 2px;
+}
+
+/* No hover to reveal it on touch, so it stays put. */
+@media (hover: none) {
+  .motion-toggle {
+    opacity: 1;
+  }
+}
+
+.frame-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.ratio-21x9 { aspect-ratio: 21 / 9; }
+.ratio-16x9 { aspect-ratio: 16 / 9; }
+.ratio-3x2 { aspect-ratio: 3 / 2; }
+.ratio-4x3 { aspect-ratio: 4 / 3; }
+.ratio-1x1 { aspect-ratio: 1 / 1; }
 
 .hero-title {
   margin: 0;
@@ -244,6 +416,286 @@ main {
 @keyframes bob {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
+}
+
+/* ============ Projects ============ */
+.page-head {
+  padding-bottom: clamp(2.5rem, 7vh, 5rem);
+}
+
+.page-title {
+  margin: 0;
+  font-size: clamp(3rem, 11vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.page-title .outline {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--text);
+}
+
+.page-intro {
+  max-width: 46ch;
+  margin: clamp(1.5rem, 4vh, 2.5rem) 0 0;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  opacity: 0.7;
+}
+
+/* Jump list — doubles as a table of contents for the spreads below. */
+.project-index {
+  list-style: none;
+  margin: clamp(2rem, 5vh, 3rem) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  border-top: 1px solid var(--hairline);
+  padding-top: 1rem;
+}
+
+.project-index a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  opacity: 0.75;
+  transition: opacity 0.3s var(--ease);
+}
+
+.project-index a:hover {
+  opacity: 1;
+}
+
+.project-index .idx {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.project {
+  border-top: 1px solid var(--hairline);
+  padding: clamp(2rem, 5vh, 3.5rem) 0 clamp(4rem, 11vh, 8rem);
+  scroll-margin-top: 6rem;
+}
+
+.project-head {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+/* Outline numeral, echoing the "Lim" treatment in the hero. */
+.project-num {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--text);
+  flex: 0 0 auto;
+}
+
+.project-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.project-tagline {
+  margin: 0.6rem 0 0;
+  max-width: 46ch;
+  font-size: 0.95rem;
+  opacity: 0.6;
+}
+
+.project-body {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(0, 2.5fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: clamp(2rem, 5vh, 3.5rem);
+}
+
+/* Alternate which side the meta rail sits on, so the two spreads mirror. */
+.project:nth-of-type(even) .project-body {
+  grid-template-columns: minmax(0, 2.5fr) minmax(180px, 1fr);
+}
+
+.project:nth-of-type(even) .project-meta {
+  order: 2;
+}
+
+.project-meta {
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+}
+
+.project-meta dl {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.project-meta dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.project-meta dl > div:first-child {
+  border-top: 1px solid var(--hairline);
+}
+
+.project-meta dt {
+  opacity: 0.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  line-height: 1.9;
+}
+
+.project-meta dd {
+  margin: 0;
+  text-align: right;
+}
+
+.project-lede {
+  margin: 0;
+  max-width: 58ch;
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  line-height: 1.5;
+}
+
+.project-text {
+  max-width: 62ch;
+  margin: clamp(1.5rem, 4vh, 2.5rem) 0 0;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.plate {
+  margin: clamp(1.5rem, 4vh, 2.5rem) 0 0;
+}
+
+/* Cover images break the container and run the full width of the window. */
+.plate-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: clamp(2rem, 5vh, 3.5rem);
+}
+
+.plate-bleed .frame {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+}
+
+.plate-bleed figcaption {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding: 0 var(--gutter);
+}
+
+.plate-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  margin-top: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.plate-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.plate-grid .plate {
+  margin: 0;
+}
+
+.pull {
+  margin: clamp(2rem, 6vh, 3.5rem) 0 0;
+  padding: clamp(1.25rem, 3vh, 2rem) 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  line-height: 1.3;
+  max-width: 26ch;
+}
+
+/* ============ Shop ============ */
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  margin-top: clamp(2rem, 5vh, 3.5rem);
+  padding-bottom: clamp(4rem, 10vh, 8rem);
+}
+
+.product {
+  border-top: 1px solid var(--hairline);
+  padding-top: clamp(1.25rem, 3vh, 1.75rem);
+}
+
+.product-name {
+  margin: 1rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.product-desc {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.product-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.1rem 0;
+}
+
+.product-size {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.size-select {
+  font: inherit;
+  font-size: 0.85rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+}
+
+.product-price {
+  font-size: 0.95rem;
+}
+
+.paypal-button-container {
+  min-height: 40px;
+}
+
+.product-status {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.75;
+  min-height: 1.2em;
 }
 
 /* ============ Contact ============ */
@@ -382,6 +834,22 @@ main {
   opacity: 0.7;
 }
 
+.work-links {
+  margin: 1.1rem 0 0;
+  font-size: 0.9rem;
+}
+
+.work-links a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 0.15em;
+  transition: border-color 0.3s var(--ease);
+}
+
+.work-links a:hover {
+  border-color: var(--text);
+}
+
 .credits {
   max-width: 62ch;
   margin: 0.75rem 0 0;
@@ -453,9 +921,34 @@ figcaption {
 .reveal.d2 { transition-delay: 0.24s; }
 
 /* ============ Responsive ============ */
+@media (max-width: 900px) {
+  /* Not enough width for a meta rail beside the content — it becomes a header. */
+  .project-body,
+  .project:nth-of-type(even) .project-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-meta,
+  .project:nth-of-type(even) .project-meta {
+    position: static;
+    order: 0;
+  }
+}
+
 @media (max-width: 760px) {
   .media-grid {
     grid-template-columns: 1fr;
+  }
+
+  .plate-grid,
+  .plate-grid-3,
+  .shop-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-head {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .hero-title .outline {
@@ -466,6 +959,17 @@ figcaption {
   .hero-meta {
     flex-wrap: wrap;
     gap: 0.5rem 1.5rem;
+  }
+
+  /* The name needs the full width at this size, so the portrait drops below it. */
+  .hero-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(1.5rem, 5vh, 2.5rem);
+  }
+
+  .hero-portrait {
+    width: min(60%, 220px);
   }
 
   .work-header {
@@ -483,6 +987,50 @@ figcaption {
 
   .work-header .dot {
     order: 1;
+  }
+
+  /* The link row bottoms out around 253px wide, so it starts crowding the
+     centred mark near 640px. Swap it for the hamburger before that happens:
+     the button takes the left column, the mark and theme toggle stay put, and
+     the links become a panel that drops out of the bar. */
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-nav nav {
+    /* Must drop out of the "nav" area: an absolutely positioned grid child
+       keeps its grid area as the containing block, which would pin the panel
+       to the width of the left column instead of the full bar. */
+    grid-area: auto;
+    /* ...and stretch, or the inherited justify-self:start would shrink the
+       panel to fit its longest link rather than honour left:0/right:0. */
+    justify-self: stretch;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0.25rem var(--gutter) 1.25rem;
+    /* Opaque, unlike the bar itself — it sits over scrolling content. */
+    background: var(--bg);
+    border-bottom: 1px solid var(--hairline);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0.3s;
+  }
+
+  .site-nav.menu-open nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .site-nav nav a {
+    font-size: 1.05rem;
+    padding: 0.7rem 0;
   }
 }
 
