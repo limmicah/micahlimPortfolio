@@ -265,20 +265,28 @@ main {
   padding-top: 4rem;
 }
 
+/* The text column stretches to the headshot's height: name and subtitle sit
+   just under the photo's top edge, contact pins to its bottom edge. */
 .hero-main {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: clamp(1.5rem, 5vw, 4rem);
 }
 
-.hero-main .hero-title {
+.hero-text {
   flex: 1 1 auto;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-block: clamp(1.5rem, 5vh, 3rem) clamp(1rem, 3vh, 2rem);
+}
+
+.hero-side {
+  flex: 0 0 auto;
+  width: clamp(220px, 24vw, 320px);
 }
 
 .hero-portrait {
-  flex: 0 0 auto;
-  width: clamp(150px, 22vw, 260px);
   margin: 0;
 }
 
@@ -369,40 +377,19 @@ main {
 
 .hero-title {
   margin: 0;
-  font-size: clamp(4.25rem, 16.5vw, 13rem);
-  line-height: 0.95;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3.4rem, 9.5vw, 9.5rem);
+  line-height: 1;
   letter-spacing: -0.02em;
   font-weight: 500;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
-.hero-title .line {
-  display: block;
+.hero-subtitle {
+  margin: clamp(1rem, 2.5vh, 1.75rem) 0 0;
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  opacity: 0.7;
 }
-
-.hero-title .outline {
-  font-family: "Playfair Display", serif;
-  font-weight: 500;
-  color: transparent;
-  -webkit-text-stroke: 2px var(--text);
-  margin-left: clamp(0rem, 12vw, 10rem);
-}
-
-.hero-meta {
-  display: flex;
-  align-items: baseline;
-  gap: clamp(1rem, 4vw, 3rem);
-  margin-top: clamp(2rem, 5vh, 4rem);
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--hairline);
-}
-
-.hero-meta p {
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-.muted { opacity: 0.55; }
 
 .scroll-cue {
   margin-left: auto;
@@ -699,8 +686,40 @@ main {
 }
 
 /* ============ Contact ============ */
+/* Sits beside the name in the hero, so the list runs narrower and smaller
+   than the full-width version it started as. */
 .contact {
-  padding: clamp(5rem, 12vh, 9rem) 0;
+  width: min(100%, 400px);
+  margin-top: auto;
+  padding-top: clamp(2rem, 5vh, 3rem);
+}
+
+.contact .contact-list li {
+  border-bottom: none;
+}
+
+.contact-heading {
+  font-weight: inherit;
+  margin-bottom: 0.9rem;
+}
+
+/* No side or bottom padding, so the address lines up with the name above and
+   the photo's bottom edge; the hover fill reaches past the box to make up for it. */
+.contact .contact-list a {
+  gap: 1rem;
+  padding: clamp(0.7rem, 1.8vh, 1.1rem) 0 0;
+}
+
+.contact .contact-list a::before {
+  inset: 0 -0.75rem -0.6rem;
+}
+
+.contact .contact-list .contact-name {
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+}
+
+.contact .contact-list .arrow {
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
 }
 
 .contact-list {
@@ -746,11 +765,6 @@ main {
 .contact-list a:hover,
 .contact-list a:focus-visible {
   color: var(--bg);
-}
-
-.contact-list .idx {
-  font-size: 0.8rem;
-  opacity: 0.55;
 }
 
 .contact-list .contact-name {
@@ -800,31 +814,12 @@ main {
   flex-wrap: wrap;
 }
 
-.work-idx {
-  font-size: 0.8rem;
-  opacity: 0.55;
-}
-
 .work-name {
   margin: 0;
   font-size: clamp(1.5rem, 4vw, 2.6rem);
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.15;
-}
-
-.work-header .dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 2px;
-  align-self: center;
-  flex-shrink: 0;
-}
-
-.work-year {
-  margin-left: auto;
-  font-size: 0.9rem;
-  opacity: 0.55;
 }
 
 .work-desc {
@@ -951,16 +946,6 @@ figcaption {
     gap: 0.75rem;
   }
 
-  .hero-title .outline {
-    margin-left: 8vw;
-    -webkit-text-stroke-width: 1.5px;
-  }
-
-  .hero-meta {
-    flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
-  }
-
   /* The name needs the full width at this size, so the portrait drops below it. */
   .hero-main {
     flex-direction: column;
@@ -968,29 +953,22 @@ figcaption {
     gap: clamp(1.5rem, 5vh, 2.5rem);
   }
 
-  .hero-portrait {
-    width: min(60%, 220px);
+  .hero-text {
+    padding-block: 0;
   }
 
-  .work-header {
-    gap: 0.6rem;
-  }
-
-  .work-name {
+  .hero-side {
     width: 100%;
-    order: -1;
   }
 
-  .work-year {
-    margin-left: 0;
+  .hero-portrait {
+    width: min(60%, 260px);
   }
+}
 
-  .work-header .dot {
-    order: 1;
-  }
-
-  /* The link row bottoms out around 253px wide, so it starts crowding the
-     centred mark near 640px. Swap it for the hamburger before that happens:
+@media (max-width: 1200px) {
+  /* The link row bottoms out around 500px wide, so it starts crowding the
+     centred mark near 1150px. Swap it for the hamburger before that happens:
      the button takes the left column, the mark and theme toggle stay put, and
      the links become a panel that drops out of the bar. */
   .nav-toggle {

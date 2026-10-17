@@ -79,7 +79,7 @@ document.querySelectorAll('.plate-video').forEach((video) => {
 // Hamburger menu, below the 760px breakpoint where the links leave the bar.
 const siteNav = document.querySelector('.site-nav');
 const navToggle = document.querySelector('.nav-toggle');
-const desktopNav = window.matchMedia('(min-width: 761px)');
+const desktopNav = window.matchMedia('(min-width: 1201px)');
 
 const setMenu = (open) => {
     siteNav.classList.toggle('menu-open', open);
@@ -113,14 +113,9 @@ desktopNav.addEventListener('change', (e) => {
     if (e.matches) setMenu(false);
 });
 
-// Theme toggle: manual choice is saved; otherwise follow the system.
+// Theme toggle: manual choice is saved; otherwise the site stays dark.
 document.querySelector('.theme-toggle').addEventListener('click', () => {
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     applyTheme(next);
     try { localStorage.setItem('theme', next); } catch (e) {}
-});
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    let saved = null;
-    try { saved = localStorage.getItem('theme'); } catch (_) {}
-    if (!saved) applyTheme(e.matches ? 'dark' : 'light');
 });

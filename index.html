@@ -23,7 +23,7 @@
     <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="favicons/favicon-128x128.png" sizes="128x128" />
-    <meta name="theme-color" content="#E5E4E2">
+    <meta name="theme-color" content="#151515">
     <script>
         // Apply the theme before first paint to avoid a flash of the wrong mode,
         // and keep the browser-UI theme-color in sync with the actual theme.
@@ -33,9 +33,9 @@
             if (meta) meta.content = theme === 'dark' ? '#151515' : '#E5E4E2';
         };
         (function () {
-            var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            var theme = system;
-            try { theme = localStorage.getItem('theme') || system; } catch (e) {}
+            // Dark unless the visitor has picked light with the toggle.
+            var theme = 'dark';
+            try { theme = localStorage.getItem('theme') || 'dark'; } catch (e) {}
             window.applyTheme(theme);
         })();
     </script>
@@ -47,9 +47,10 @@
     <header class="site-nav">
         <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true"></span></button>
         <nav id="site-menu">
-            <a href="#contact">Contact</a>
-            <a href="music.html">Music</a>
-            <a href="projects.html">Projects</a>
+            <a href="music.html">Composition</a>
+            <a href="performance.html">Performance</a>
+            <a href="projects.html">Software</a>
+            <a href="research.html">Independent Research</a>
         </nav>
         <a class="wordmark" href="#top" aria-label="Micah Lim — home">ml</a>
         <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span aria-hidden="true"></span></button>
@@ -58,44 +59,27 @@
     <main id="top">
         <!-- ============ HERO ============ -->
         <section class="hero">
-            <p class="section-label reveal">[1] — Portfolio</p>
             <div class="hero-main">
-                <h1 class="hero-title">
-                    <span class="line reveal"><span class="serif-italic">Micah</span></span>
-                    <span class="line reveal d1"><span class="outline">Lim</span></span>
-                </h1>
-                <!-- Headshot, disabled for now. Uncomment to bring it back; swap the
-                     .frame-label span for <img src="images/headshot.jpg" alt="Micah Lim">
-                     to use a real photo — the frame chrome steps aside on its own.
-                <figure class="hero-portrait reveal d2">
-                    <div class="frame">
-                        <span class="frame-label">Headshot</span>
-                    </div>
-                </figure>
-                -->
+                <div class="hero-text">
+                    <h1 class="hero-title reveal">Micah Lim</h1>
+                    <p class="hero-subtitle reveal d1">Composer, saxophonist, software developer</p>
+                    <!-- ============ CONTACT ============ -->
+                    <section class="contact" id="contact">
+                        <h2 class="section-label contact-heading reveal">Contact info</h2>
+                        <ul class="contact-list">
+                            <li class="reveal"><a href="mailto:micahblim@gmail.com" target="_blank" rel="noopener noreferrer"><span class="contact-name">micahblim@gmail.com</span><span class="arrow">↗</span></a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="hero-side">
+                    <figure class="hero-portrait reveal d2">
+                        <div class="frame">
+                            <img src="media/headshot-600.webp" srcset="media/headshot-600.webp 600w, media/headshot-1200.webp 1200w" sizes="(max-width: 760px) 60vw, 320px" width="600" height="800" alt="Micah Lim holding a saxophone at a music stand">
+                        </div>
+                    </figure>
+                </div>
             </div>
-            <div class="hero-meta reveal d2">
-                <p class="muted">Selected works, 2022—2026</p>
-                <a class="scroll-cue" href="#contact" aria-label="Scroll to contact">↓</a>
-            </div>
-        </section>
-
-        <!-- ============ CONTACT ============ -->
-        <section class="contact" id="contact">
-            <p class="section-label reveal">[2] — Contact</p>
-            <h2 class="visually-hidden">Contact</h2>
-            <ul class="contact-list">
-                <li class="reveal"><a href="mailto:micahblim@gmail.com" target="_blank" rel="noopener noreferrer"><span class="idx">01</span><span class="contact-name">Mail</span><span class="arrow">↗</span></a></li>
-                <li class="reveal d1"><a href="https://www.youtube.com/@prod_by_mm" target="_blank" rel="noopener noreferrer"><span class="idx">02</span><span class="contact-name">YouTube</span><span class="arrow">↗</span></a></li>
-                <li class="reveal d2"><a href="https://github.com/limmicah" target="_blank" rel="noopener noreferrer"><span class="idx">03</span><span class="contact-name">GitHub</span><span class="arrow">↗</span></a></li>
-            </ul>
         </section>
     </main>
-
-    <footer class="site-footer">
-        <p>© 2026 Micah Lim</p>
-        <a href="#top">Back to top ↑</a>
-    </footer>
-
 </body>
 </html>

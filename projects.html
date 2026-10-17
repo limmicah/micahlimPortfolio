@@ -12,8 +12,8 @@
 
       gtag('config', 'G-L5WXRXSWZF');
     </script>
-    <title>Projects — Micah Lim</title>
-    <meta name="description" content="Projects by Micah Lim — Bespoke Samples and NMFD research.">
+    <title>Software — Micah Lim</title>
+    <meta name="description" content="Software by Micah Lim — Bespoke Samples plugins and sample packs.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,400;1,500&display=swap">
@@ -23,7 +23,7 @@
     <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="favicons/favicon-128x128.png" sizes="128x128" />
-    <meta name="theme-color" content="#E5E4E2">
+    <meta name="theme-color" content="#151515">
     <script>
         // Apply the theme before first paint to avoid a flash of the wrong mode,
         // and keep the browser-UI theme-color in sync with the actual theme.
@@ -33,9 +33,9 @@
             if (meta) meta.content = theme === 'dark' ? '#151515' : '#E5E4E2';
         };
         (function () {
-            var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            var theme = system;
-            try { theme = localStorage.getItem('theme') || system; } catch (e) {}
+            // Dark unless the visitor has picked light with the toggle.
+            var theme = 'dark';
+            try { theme = localStorage.getItem('theme') || 'dark'; } catch (e) {}
             window.applyTheme(theme);
         })();
     </script>
@@ -47,9 +47,10 @@
     <header class="site-nav">
         <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true"></span></button>
         <nav id="site-menu">
-            <a href="index.html#contact">Contact</a>
-            <a href="music.html">Music</a>
-            <a href="projects.html" aria-current="page">Projects</a>
+            <a href="music.html">Composition</a>
+            <a href="performance.html">Performance</a>
+            <a href="projects.html" aria-current="page">Software</a>
+            <a href="research.html">Independent Research</a>
         </nav>
         <a class="wordmark" href="index.html" aria-label="Micah Lim — home">ml</a>
         <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span aria-hidden="true"></span></button>
@@ -58,22 +59,15 @@
     <main class="page-main" id="top">
         <!-- ============ PAGE HEAD ============ -->
         <header class="page-head">
-            <p class="section-label reveal">[1] — Projects</p>
-            <h1 class="page-title reveal">Other <span class="outline">Work</span></h1>
-            <!-- TODO: one or two sentences framing what lives on this page. -->
+            <h1 class="page-title reveal">Software</h1>
             <p class="page-intro reveal d1">Exploring innovative approaches to audio processing and creative tools, at the  <i>intersection of music and technology.</i></p>
-            <ul class="project-index reveal d2">
-                <li><a href="#bespoke-samples"><span class="idx">01</span> Bespoke Samples</a></li>
-                <li><a href="#nmfd"><span class="idx">02</span> NMFD Research</a></li>
-            </ul>
         </header>
 
-        <!-- ============ 01 — BESPOKE SAMPLES ============ -->
+        <!-- ============ BESPOKE SAMPLES ============ -->
         <!-- TODO: replace every "Placeholder" string, point the link at the live site,
              and drop photos into the .frame divs (see the note at the bottom of this file). -->
         <article class="project" id="bespoke-samples">
             <div class="project-head reveal">
-                <span class="project-num" aria-hidden="true">01</span>
                 <div>
                     <h2 class="project-title">Bespoke Samples</h2>
                     <p class="project-tagline">Creating plugins and sample packs for music producers</p>
@@ -149,54 +143,6 @@
                 </div>
             </div>
         </article>
-
-        <!-- ============ 02 — NMFD RESEARCH ============ -->
-        <article class="project" id="nmfd">
-            <div class="project-head reveal">
-                <span class="project-num" aria-hidden="true">02</span>
-                <div>
-                    <h2 class="project-title">NMFD Research</h2>
-                    <p class="project-tagline">Optimal template length for NMFD drum stem separation.</p>
-                </div>
-            </div>
-
-            <div class="project-body">
-                <aside class="project-meta reveal">
-                    <dl>
-                        <div><dt>Year</dt><dd>2023-2026</dd></div>
-                        <div><dt>Mentorship</dt><dd>Claire Chang, Cornell University</dd></div>
-                    </dl>
-                    <p class="work-links"><a href="#" target="_blank" rel="noopener noreferrer">Read the paper (coming soon)<span class="arrow">↗</span></a></p>
-                    <p class="work-links"><a href="https://github.com/limmicah/NMFD_separation" target="_blank" rel="noopener noreferrer">View the code <span class="arrow">↗</span></a></p>
-                </aside>
-                
-                <div class="project-content">
-                    <p class="project-lede reveal">My paper attempts to improve Non-negative Matrix Factor Deconvolution (NMFD), an algorithm for musical stem separation which can take an musical audio mixture and separate it into constituent instrument tracks.</p>
-                    <!--
-                    <figure class="plate reveal">
-                        <div class="frame ratio-16x9"><span class="frame-label">Figure — spectrogram or plot, 16:9</span></div>
-                        <figcaption>Placeholder — figure caption.</figcaption>
-                    </figure>
-                    <p class="project-text reveal">Placeholder — method and findings. Two or three paragraphs is plenty; link out to the paper for the rest.</p>-->
-                    <!--
-                    <div class="plate-grid plate-grid-3 reveal">
-                        <figure class="plate">
-                            <div class="frame ratio-1x1"><span class="frame-label">Fig. 1</span></div>
-                            <figcaption>Placeholder.</figcaption>
-                        </figure>
-                        <figure class="plate">
-                            <div class="frame ratio-1x1"><span class="frame-label">Fig. 2</span></div>
-                            <figcaption>Placeholder.</figcaption>
-                        </figure>
-                        <figure class="plate">
-                            <div class="frame ratio-1x1"><span class="frame-label">Fig. 3</span></div>
-                            <figcaption>Placeholder.</figcaption>
-                        </figure>
-                    </div>-->
-                </div>
-            </div>
-        </article>
-
         <!-- To use a real image anywhere on this page, replace the <span class="frame-label">
              inside a .frame with <img src="images/your-file.jpg" alt="…">. The frame's border
              and fill disappear on their own, and the photo is cropped to the frame's ratio. -->

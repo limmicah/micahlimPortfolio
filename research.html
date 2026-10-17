@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L5WXRXSWZF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-L5WXRXSWZF');
+    </script>
+    <title>Independent Research — Micah Lim</title>
+    <meta name="description" content="Independent research by Micah Lim — NMFD drum stem separation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,400;1,500&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicons/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="favicons/favicon-128x128.png" sizes="128x128" />
+    <meta name="theme-color" content="#151515">
+    <script>
+        // Apply the theme before first paint to avoid a flash of the wrong mode,
+        // and keep the browser-UI theme-color in sync with the actual theme.
+        window.applyTheme = function (theme) {
+            document.documentElement.dataset.theme = theme;
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.content = theme === 'dark' ? '#151515' : '#E5E4E2';
+        };
+        (function () {
+            // Dark unless the visitor has picked light with the toggle.
+            var theme = 'dark';
+            try { theme = localStorage.getItem('theme') || 'dark'; } catch (e) {}
+            window.applyTheme(theme);
+        })();
+    </script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-nav">
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true"></span></button>
+        <nav id="site-menu">
+            <a href="music.html">Composition</a>
+            <a href="performance.html">Performance</a>
+            <a href="projects.html">Software</a>
+            <a href="research.html" aria-current="page">Independent Research</a>
+        </nav>
+        <a class="wordmark" href="index.html" aria-label="Micah Lim — home">ml</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span aria-hidden="true"></span></button>
+    </header>
+
+    <main class="page-main" id="top">
+        <!-- ============ PAGE HEAD ============ -->
+        <header class="page-head">
+            <h1 class="page-title reveal">Independent Research</h1>
+        </header>
+
+        <!-- ============ NMFD RESEARCH ============ -->
+        <article class="project" id="nmfd">
+            <div class="project-head reveal">
+                <div>
+                    <h2 class="project-title">NMFD Research</h2>
+                    <p class="project-tagline">Optimal template length for NMFD drum stem separation.</p>
+                </div>
+            </div>
+
+            <div class="project-body">
+                <aside class="project-meta reveal">
+                    <dl>
+                        <div><dt>Year</dt><dd>2023-2026</dd></div>
+                        <div><dt>Mentorship</dt><dd>Claire Chang, Cornell University</dd></div>
+                    </dl>
+                    <p class="work-links"><a href="#" target="_blank" rel="noopener noreferrer">Read the paper (coming soon)<span class="arrow">↗</span></a></p>
+                    <p class="work-links"><a href="https://github.com/limmicah/NMFD_separation" target="_blank" rel="noopener noreferrer">View the code <span class="arrow">↗</span></a></p>
+                </aside>
+                
+                <div class="project-content">
+                    <p class="project-lede reveal">My paper attempts to improve Non-negative Matrix Factor Deconvolution (NMFD), an algorithm for musical stem separation which can take an musical audio mixture and separate it into constituent instrument tracks.</p>
+                    <!--
+                    <figure class="plate reveal">
+                        <div class="frame ratio-16x9"><span class="frame-label">Figure — spectrogram or plot, 16:9</span></div>
+                        <figcaption>Placeholder — figure caption.</figcaption>
+                    </figure>
+                    <p class="project-text reveal">Placeholder — method and findings. Two or three paragraphs is plenty; link out to the paper for the rest.</p>-->
+                    <!--
+                    <div class="plate-grid plate-grid-3 reveal">
+                        <figure class="plate">
+                            <div class="frame ratio-1x1"><span class="frame-label">Fig. 1</span></div>
+                            <figcaption>Placeholder.</figcaption>
+                        </figure>
+                        <figure class="plate">
+                            <div class="frame ratio-1x1"><span class="frame-label">Fig. 2</span></div>
+                            <figcaption>Placeholder.</figcaption>
+                        </figure>
+                        <figure class="plate">
+                            <div class="frame ratio-1x1"><span class="frame-label">Fig. 3</span></div>
+                            <figcaption>Placeholder.</figcaption>
+                        </figure>
+                    </div>-->
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Micah Lim</p>
+        <a href="#top">Back to top ↑</a>
+    </footer>
+</body>
+</html>
