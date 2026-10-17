@@ -172,6 +172,18 @@ a:focus-visible {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* The icons are drawn small, so both nav buttons get an invisible 44px hit
+   area for touch without shifting the bar's layout. */
+.nav-toggle::after,
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
 .nav-toggle:focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 6px;
@@ -213,6 +225,7 @@ a:focus-visible {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  position: relative;
 }
 
 .theme-toggle span {
